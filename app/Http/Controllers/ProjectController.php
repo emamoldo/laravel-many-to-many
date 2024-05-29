@@ -39,6 +39,12 @@ class ProjectController extends Controller
 
 
         if ($request->has('cover_image')) {
+
+
+            // if ($project->cover_image) {
+            //     Storage::delete($project->cover_image);
+            // }
+
             $image_path = Storage::put('uploads', $validated['cover_image']);
             $validated['cover_image'] = $image_path;
         }

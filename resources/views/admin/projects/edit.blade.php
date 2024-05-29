@@ -19,7 +19,7 @@
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title"
-                aria-describedby="titleHelper" placeholder="Title of the Project"/>
+                aria-describedby="titleHelper" placeholder="Title of the Project" />
             <small id="titleHelper" class="form-text text-muted">Change the title of the Project</small>
             @error('title')
                 <div class="text-danger ">
@@ -31,9 +31,9 @@
 
         <div class="mb-3">
             @if(Str::startsWith($project->cover_image, 'https://'))
-                <img class="py-3" width="150" src="{{$project->cover_image}}" alt="">
+                <img width="150" loading="lazy" src="{{$project->cover_image}}" alt="">
             @else
-                <img class="py-3" width="150" src="{{asset('storage/' . $project->cover_image)}}" alt="">
+                <img width="150" loading="lazy" src="{{asset('storage/' . $project->cover_image)}}" alt="">
             @endif
 
             <label for="cover_image" class="form-label"> Update the Image</label>
@@ -51,7 +51,7 @@
         <div class="mb-3">
             <label for="link" class="form-label">Link</label>
             <input type="text" class="form-control @error('link') is-invalid @enderror" name="link" id="link"
-                aria-describedby="linkHelper" placeholder="Link of the Project"/>
+                aria-describedby="linkHelper" placeholder="Link of the Project" />
             <small id="linkHelper" class="form-text text-muted">Change the Link of the Project</small>
             @error('link')
                 <div class="text-danger ">
@@ -60,18 +60,19 @@
             @enderror
         </div>
 
-        {{-- 
-            <div class="mb-3">
-                <label for="category_id" class="form-label">Category</label>
-                <select class="form-select" name="category_id" id="category_id">
-                    <option selected disabled>Select the Category of the Project</option>
-                    @foreach ($categories as $category)
-                        <option value="{{$category->id}}" {{$category->id == old('category_id', $category->id) ? 'selected' : ''}}>
-                            {{$category->name}}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
+        {{--
+        <div class="mb-3">
+            <label for="category_id" class="form-label">Category</label>
+            <select class="form-select" name="category_id" id="category_id">
+                <option selected disabled>Select the Category of the Project</option>
+                @foreach ($categories as $category)
+                <option value="{{$category->id}}" {{$category->id == old('category_id', $category->id) ? 'selected' :
+                    ''}}>
+                    {{$category->name}}
+                </option>
+                @endforeach
+            </select>
+        </div>
         --}}
 
         <div class="mb-3">
