@@ -21,7 +21,7 @@
             <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title"
                 aria-describedby="titleHelper" placeholder="Title of the Project"
                 value="{{old('title', $project->title)}}" />
-            <small id="titleHelper" class="form-text text-muted">Type the title of the Project</small>
+            <small id="titleHelper" class="form-text text-muted">Change the title of the Project</small>
             @error('title')
                 <div class="text-danger ">
                     {{$message}}
@@ -32,16 +32,16 @@
 
         <div class="mb-3">
             @if(Str::startsWith($project->cover_image, 'https://'))
-                <img width="150" src="{{$project->cover_image}}" alt="">
+                <img class="py-3" width="150" src="{{$project->cover_image}}" alt="">
             @else
-                <img width="150" src="{{asset('storage/' . $project->cover_image)}}" alt="">
+                <img class="py-3" width="150" src="{{asset('storage/' . $project->cover_image)}}" alt="">
             @endif
 
-            <label for="cover_image" class="form-label">Update Image</label>
+            <label for="cover_image" class="form-label"> Update the Image</label>
             <input type="file" class="form-control @error('cover_image') is-invalid @enderror" name="cover_image"
                 id="cover_image" aria-describedby="cover_imageHelper" placeholder="Title of the Project"
                 value="{{old('cover_image', $project->cover_image)}}" />
-            <small id="cover_imageHelper" class="form-text text-muted">Add the cover image of the Project</small>
+            <small id="cover_imageHelper" class="form-text text-muted">Change the Image of the Project</small>
             @error('cover_image')
                 <div class="text-danger ">
                     {{$message}}
