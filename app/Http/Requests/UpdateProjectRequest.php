@@ -25,7 +25,8 @@ class UpdateProjectRequest extends FormRequest
             'title' => 'required|min:5|max:150',
             // 'category_id' => 'nullable|exists:categories,id',
             'content' => 'nullable',
-            'cover_image' => 'nullable'
+            'cover_image' => 'nullable',
+            'link' => 'nullable|max:500',
         ];
     }
 }

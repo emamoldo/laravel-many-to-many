@@ -13,10 +13,11 @@
     <div class="d-flex gap-5">
         <img width="500" src="{{$project->cover_image}}" alt="{{$project->title}}">
         <section>
-            <p>{{$project->content}}</p>
+            <a>{{$project->content}}</a> <br><br>
 
-            <strong>See my Project Code from GitHub:</strong>
-            <p>link here</p>
+            <strong>See my Project Code from GitHub:</strong> <br>
+            <a href="{{$project->link}}">{{$project->link}}</a> <br><br>
+
 
             <strong>Category:</strong>
             <p>category here</p>

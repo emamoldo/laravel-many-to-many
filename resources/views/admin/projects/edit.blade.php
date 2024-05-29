@@ -19,8 +19,7 @@
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title"
-                aria-describedby="titleHelper" placeholder="Title of the Project"
-                value="{{old('title', $project->title)}}" />
+                aria-describedby="titleHelper" placeholder="Title of the Project"/>
             <small id="titleHelper" class="form-text text-muted">Change the title of the Project</small>
             @error('title')
                 <div class="text-danger ">
@@ -43,6 +42,18 @@
                 value="{{old('cover_image', $project->cover_image)}}" />
             <small id="cover_imageHelper" class="form-text text-muted">Change the Image of the Project</small>
             @error('cover_image')
+                <div class="text-danger ">
+                    {{$message}}
+                </div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="link" class="form-label">Link</label>
+            <input type="text" class="form-control @error('link') is-invalid @enderror" name="link" id="link"
+                aria-describedby="linkHelper" placeholder="Link of the Project"/>
+            <small id="linkHelper" class="form-text text-muted">Change the Link of the Project</small>
+            @error('link')
                 <div class="text-danger ">
                     {{$message}}
                 </div>

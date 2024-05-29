@@ -39,6 +39,18 @@
             @enderror
         </div>
 
+        <div class="mb-3">
+            <label for="link" class="form-label">Link</label>
+            <input type="text" class="form-control @error('link') is-invalid @enderror" name="link" id="link"
+                aria-describedby="linkHelper" placeholder="Link of the Project"/>
+            <small id="linkHelper" class="form-text text-muted">Type the Link of the Project</small>
+            @error('link')
+                <div class="text-danger ">
+                    {{$message}}
+                </div>
+            @enderror
+        </div>
+
         {{-- 
             <div class="mb-3">
                 <label for="category_id" class="form-label">Category</label>
