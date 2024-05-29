@@ -28,7 +28,6 @@
             @enderror
         </div>
 
-
         <div class="mb-3">
             @if(Str::startsWith($project->cover_image, 'https://'))
                 <img width="150" loading="lazy" src="{{$project->cover_image}}" alt="">
@@ -36,7 +35,7 @@
                 <img width="150" loading="lazy" src="{{asset('storage/' . $project->cover_image)}}" alt="">
             @endif
 
-            <label for="cover_image" class="form-label"> Update the Image</label>
+            <label for="cover_image" class="form-label p-5"> Update the Image</label>
             <input type="file" class="form-control @error('cover_image') is-invalid @enderror" name="cover_image"
                 id="cover_image" aria-describedby="cover_imageHelper" placeholder="Title of the Project"
                 value="{{old('cover_image', $project->cover_image)}}" />
@@ -60,20 +59,17 @@
             @enderror
         </div>
 
-        {{--
         <div class="mb-3">
-            <label for="category_id" class="form-label">Category</label>
-            <select class="form-select" name="category_id" id="category_id">
-                <option selected disabled>Select the Category of the Project</option>
-                @foreach ($categories as $category)
-                <option value="{{$category->id}}" {{$category->id == old('category_id', $category->id) ? 'selected' :
-                    ''}}>
-                    {{$category->name}}
-                </option>
+            <label for="type_id" class="form-label">Type</label>
+            <select class="form-select" name="type_id" id="type_id">
+                <option selected disabled>Select the Type of the Project</option>
+                @foreach ($types as $type)
+                    <option value="{{$type->id}}" {{$type->id == old('type_id', $project->type_id) ? 'selected' : ''}}>
+                        {{$type->name}}
+                    </option>
                 @endforeach
             </select>
         </div>
-        --}}
 
         <div class="mb-3">
             <label for="content" class="form-label">Content</label> <br>

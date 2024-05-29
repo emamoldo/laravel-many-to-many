@@ -23,7 +23,7 @@ class UpdateProjectRequest extends FormRequest
     {
         return [
             'title' => 'required|min:5|max:150',
-            // 'category_id' => 'nullable|exists:categories,id',
+            'type_id' => 'nullable|exists:types,id',
             'content' => 'nullable',
             'cover_image' => 'nullable',
             'link' => 'nullable|max:500',

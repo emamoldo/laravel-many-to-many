@@ -23,8 +23,8 @@
             <a href="{{$project->link}}">{{$project->link}}</a> <br><br>
 
 
-            <strong>Category:</strong>
-            <p>category here</p>
+            <strong>Type:</strong>
+            <p>{{$project->type ? $project->type->name : 'Uncategorized'}}</p>
 
             <strong>Technology:</strong>
             <p>technology used here</p>

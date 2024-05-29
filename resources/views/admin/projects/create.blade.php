@@ -25,7 +25,6 @@
             @enderror
         </div>
 
-
         <div class="mb-3">
             <label for="cover_image" class="form-label">Image</label>
             <input type="file" class="form-control @error('cover_image') is-invalid @enderror" name="cover_image"
@@ -42,7 +41,7 @@
         <div class="mb-3">
             <label for="link" class="form-label">Link</label>
             <input type="text" class="form-control @error('link') is-invalid @enderror" name="link" id="link"
-                aria-describedby="linkHelper" placeholder="Link of the Project"/>
+                aria-describedby="linkHelper" placeholder="Link of the Project" />
             <small id="linkHelper" class="form-text text-muted">Type the Link of the Project</small>
             @error('link')
                 <div class="text-danger ">
@@ -51,21 +50,16 @@
             @enderror
         </div>
 
-        {{-- 
-            <div class="mb-3">
-                <label for="category_id" class="form-label">Category</label>
-                <select class="form-select" name="category_id" id="category_id">
-                    <option selected disabled>Select the Category of the Project</option>
-                    @foreach ($categories as $category)
-                        <option value="{{$category->id}}" {{$category->id == old('category_id', $category->id) ? 'selected' : ''}}>
-                            {{$category->name}}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-        --}}
-
-
+        <div class="mb-3">
+            <label for="type_id" class="form-label">Type</label>
+            <select class="form-select" name="type_id" id="type_id">
+                <option selected disabled>Select the Type of the Project</option>
+                @foreach ($types as $type)
+                    <option value="{{$type->id}}" {{$type->id == old('type_id', $type->id) ? 'selected' : ''}}>{{$type->name}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
 
         <div class="mb-3">
             <label for="content" class="form-label">Content</label> <br>
