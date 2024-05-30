@@ -62,13 +62,19 @@
         </div>
 
         <div class="d-flex gap-5 mb-5">
+
             @foreach ($technologies as $technology)
                 <div class="form-check">
-                    <input name="technologies[]" class="form-check-input" type="checkbox" value=""
+                    <input name="technologies[]" class="form-check-input" type="checkbox" value="{{$technology->id}}"
                         id="technology-{{$technology->id}}" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : ''}}>
                     <label class="form-check-label" for="technology-{{$technology->id}}">{{$technology->name}}</label>
                 </div>
             @endforeach
+            @error('technologies')
+                <div class="text-danger py-3">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
 
 

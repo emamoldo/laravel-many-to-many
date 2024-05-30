@@ -59,7 +59,7 @@ class ProjectController extends Controller
 
         $project = Project::create($validated);
         if ($request->has('technologies')) {
-            $project->technology()->attach($validated['technologies']);
+            $project->technologies()->attach($validated['technologies']);
         }
         return to_route('admin.projects.index')->with('message', 'Project Created');
     }

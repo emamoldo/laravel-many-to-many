@@ -26,8 +26,13 @@
             <strong>Type:</strong>
             <p>{{$project->type ? $project->type->name : 'Uncategorized'}}</p>
 
-            <strong>Technology:</strong>
-            <p>technology used here</p>
+            <strong>Technologies:</strong> <br>
+            @forelse ($project->technologies as $technology)
+                <span class="badge badge-dark text-dark">{{$technology->name}}</span>
+            @empty
+                <span class="badge badge-dark text-dark">Nothing Here</span>
+            @endforelse
+            <!-- <strong>Author</strong>{{$project->user ? $project->user->name : 'N/A'}} -->
         </section>
     </div>
 </div>
