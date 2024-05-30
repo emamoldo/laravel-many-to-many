@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Technology;
 use Illuminate\Support\Str;
 use App\Models\Projects;
 use Illuminate\Support\Facades\Storage;
@@ -28,7 +29,8 @@ class ProjectController extends Controller
     {
 
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -55,7 +57,10 @@ class ProjectController extends Controller
 
         // @dd($validated);
 
-        Project::create($validated);
+        $project = Project::create($validated);
+        if ($request->has('technologies')) {
+            $project->technology()->attach($validated['technologies']);
+        }
         return to_route('admin.projects.index')->with('message', 'Project Created');
     }
 
@@ -73,7 +78,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**

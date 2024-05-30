@@ -16,7 +16,7 @@
         @csrf
         @method('PUT')
 
-        <div class="mb-3">
+        <div class="mb-5">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title"
                 aria-describedby="titleHelper" placeholder="Title of the Project" />
@@ -28,7 +28,7 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+        <div class="mb-5">
             @if(Str::startsWith($project->cover_image, 'https://'))
                 <img width="150" loading="lazy" src="{{$project->cover_image}}" alt="">
             @else
@@ -47,7 +47,7 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+        <div class="mb-5">
             <label for="link" class="form-label">Link</label>
             <input type="text" class="form-control @error('link') is-invalid @enderror" name="link" id="link"
                 aria-describedby="linkHelper" placeholder="Link of the Project" />
@@ -59,7 +59,7 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+        <div class="mb-5">
             <label for="type_id" class="form-label">Type</label>
             <select class="form-select" name="type_id" id="type_id">
                 <option selected disabled>Select the Type of the Project</option>
@@ -71,9 +71,37 @@
             </select>
         </div>
 
-        <div class="mb-3">
+
+
+        <div class="d-flex gap-5 mb-5">
+
+            @foreach ($technologies as $technology)
+                @if($errors->any())
+                    <div class="form-check">
+                        <input name="technologies[]" class="form-check-input" type="checkbox" value=""
+                            id="technology-{{$technology->id}}" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : ''}}>
+                        <label class="form-check-label" for="technology-{{$technology->id}}">{{$technology->name}}</label>
+                    </div>
+                @else
+                    <div class="form-check">
+                        <input name="technologies[]" class="form-check-input" type="checkbox" value=""
+                            id="technology-{{$technology->id}}" {{ in_array($technology->id, $project->technologies->pluck('id')->toArray()) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="technology-{{$technology->id}}">{{$technology->name}}</label>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+        @error('technologies')
+            <div class="text-danger py-2">
+                {{$message}}
+            </div>
+        @enderror
+
+
+
+        <div class="mb-5">
             <label for="content" class="form-label">Content</label> <br>
-            <textarea class="form.control @error('content') is-invalid @enderror" name="content" id="content"
+            <textarea class="form-control @error('content') is-invalid @enderror" name="content" id="content"
                 rows="5">{{old('content', $project->content)}}</textarea>
             @error('content')
                 <div class="text-danger ">
