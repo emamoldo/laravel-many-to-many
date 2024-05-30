@@ -79,7 +79,8 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         $technologies = Technology::all();
-        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
+        $selectedTechnologies = $project->technologies->pluck('id')->toArray();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies', 'selectedTechnologies'));
     }
 
     /**
@@ -92,22 +93,23 @@ class ProjectController extends Controller
         $slug = Str::slug($request->title, '-');
         $validated['slug'] = $slug;
 
+        if ($request->has('cover_image')) {
+            if ($project->cover_image) {
+                Storage::delete($project->cover_image);
+            }
 
-        /*dump($request->has('cover_image'));
-        dump($validated['cover_image']);*/
-
-        // if ($request->has('cover_image') && $validated['cover_image']) {
-        //     if ($project->cover_image) {
-        //         Storage::delete($project->cover_image);
-        //     }
-
-        //     $image_path = Storage::put('uploads', $validated['cover_image']);
-        //     $validated['cover_image'] = $image_path;
-        // }
-
-
+            $image_path = Storage::put('uploads', $validated['cover_image']);
+            $validated['cover_image'] = $image_path;
+        }
 
         $project->update($validated);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($validated['technologies']);
+        } else {
+            $project->technologies()->sync([]);
+        }
+
         return to_route('admin.projects.edit', $project)->with('message', "Project $project->title Updated");
     }
 

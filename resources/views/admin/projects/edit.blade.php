@@ -71,33 +71,54 @@
             </select>
         </div>
 
+        {{--
+                <div class="d-flex gap-5 mb-5">
 
+                    @foreach ($technologies as $technology)
+                        @if($errors->any())
+                            <div class="form-check">
+                                <input name="technologies[]" class="form-check-input" type="checkbox" value=""
+                                    id="technology-{{$technology->id}}" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : ''}}>
+                                <label class="form-check-label" for="technology-{{$technology->id}}">{{$technology->name}}</label>
+                            </div>
+                        @else
+                            <div class="form-check">
+                                <input name="technologies[]" class="form-check-input" type="checkbox" value=""
+                                    id="technology-{{$technology->id}}" {{ in_array($technology->id, $project->technologies->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="technology-{{$technology->id}}">{{$technology->name}}</label>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+                @error('technologies')
+                    <div class="text-danger py-2">
+                        {{$message}}
+                    </div>
+                @enderror
+        --}}
 
         <div class="d-flex gap-5 mb-5">
 
             @foreach ($technologies as $technology)
+
+
                 @if($errors->any())
+
+
                     <div class="form-check">
-                        <input name="technologies[]" class="form-check-input" type="checkbox" value=""
+                        <input name="technologies[]" class="form-check-input" type="checkbox" value="{{$technology->id}}"
                             id="technology-{{$technology->id}}" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : ''}}>
                         <label class="form-check-label" for="technology-{{$technology->id}}">{{$technology->name}}</label>
                     </div>
                 @else
                     <div class="form-check">
-                        <input name="technologies[]" class="form-check-input" type="checkbox" value=""
-                            id="technology-{{$technology->id}}" {{ in_array($technology->id, $project->technologies->pluck('id')->toArray()) ? 'checked' : '' }}>
+                        <input name="technologies[]" class="form-check-input" type="checkbox" value="{{$technology->id}}"
+                            id="technology-{{$technology->id}}" {{ $project->technologies->contains($technology) ? 'checked' : '' }}>
                         <label class="form-check-label" for="technology-{{$technology->id}}">{{$technology->name}}</label>
                     </div>
                 @endif
             @endforeach
         </div>
-        @error('technologies')
-            <div class="text-danger py-2">
-                {{$message}}
-            </div>
-        @enderror
-
-
 
         <div class="mb-5">
             <label for="content" class="form-label">Content</label> <br>

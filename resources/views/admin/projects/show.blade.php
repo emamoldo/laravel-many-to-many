@@ -28,9 +28,9 @@
 
             <strong>Technologies:</strong> <br>
             @forelse ($project->technologies as $technology)
-                <span class="badge badge-dark text-dark">{{$technology->name}}</span>
+                <span class="badge bg-dark">{{$technology->name}}</span>
             @empty
-                <span class="badge badge-dark text-dark">Nothing Here</span>
+                <span class="badge bg-dark">Nothing Here</span>
             @endforelse
             <!-- <strong>Author</strong>{{$project->user ? $project->user->name : 'N/A'}} -->
         </section>
